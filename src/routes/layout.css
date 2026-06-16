@@ -224,10 +224,13 @@ select {
 }
 
 .sidebar {
-	position: sticky;
+	position: fixed;
 	top: 0;
+	left: 0;
 	display: flex;
+	width: 260px;
 	height: 100vh;
+	overflow-y: auto;
 	flex-direction: column;
 	gap: 24px;
 	border-right: 1px solid rgba(203, 213, 225, 0.8);
