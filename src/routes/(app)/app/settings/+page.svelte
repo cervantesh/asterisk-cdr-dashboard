@@ -1,4 +1,5 @@
 <script lang="ts">
+	import PageHeader from '$lib/components/PageHeader.svelte';
 	let { data } = $props();
 </script>
 
@@ -7,12 +8,7 @@
 </svelte:head>
 
 <main class="page-shell">
-	<div class="page-heading">
-		<div>
-			<h1>Settings</h1>
-			<p>Application status and data source.</p>
-		</div>
-	</div>
+	<PageHeader title="Settings" description="Application status and data source." />
 	<section class="settings-grid">
 		<article>
 			<span>Data Mode</span>

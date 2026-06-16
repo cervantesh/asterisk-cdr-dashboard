@@ -2,6 +2,7 @@
 	import DataTable from '$lib/components/DataTable.svelte';
 	import ExportActions from '$lib/components/ExportActions.svelte';
 	import FilterBar from '$lib/components/FilterBar.svelte';
+	import PageHeader from '$lib/components/PageHeader.svelte';
 
 	let { data } = $props();
 </script>
@@ -11,13 +12,9 @@
 </svelte:head>
 
 <main class="page-shell">
-	<div class="page-heading">
-		<div>
-			<h1>Call Details</h1>
-			<p>Individual calls with duration and billed seconds.</p>
-		</div>
+	<PageHeader title="Call Details" description="Individual calls with duration and billed seconds.">
 		<ExportActions reportId="call-details" query={data.query} />
-	</div>
+	</PageHeader>
 	<FilterBar filters={data.filters} />
 	<section class="panel">
 		<header class="panel-header">

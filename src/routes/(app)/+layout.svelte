@@ -95,7 +95,12 @@
 					<strong>{data.user.username}</strong>
 				</div>
 			</div>
-			<a class="export-shortcut" href={resolve('/api/cdr/reports/call-details/export.csv')}>
+			<a
+				class="export-shortcut"
+				href={resolve('/api/cdr/reports/call-details/export.csv')}
+				data-sveltekit-reload
+				data-sveltekit-preload-data="off"
+			>
 				<FileDown size={16} />
 				Export CSV
 			</a>

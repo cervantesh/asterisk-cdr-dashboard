@@ -7,6 +7,7 @@
 		RotateCcw,
 		SlidersHorizontal
 	} from '@lucide/svelte';
+	import FilterField from '$lib/components/FilterField.svelte';
 	import type { ReportFilters } from '$lib/types/cdr';
 
 	type Props = {
@@ -43,59 +44,53 @@
 	</div>
 
 	<div class="filter-grid">
-		<label class="filter-field">
-			<span>From</span>
-			<div class="field-shell date-field">
+		<FilterField label="From" date>
+			{#snippet icon()}
 				<CalendarRange size={16} />
-				<input name="from" type="date" value={filters.from ?? ''} />
-			</div>
-		</label>
-		<label class="filter-field">
-			<span>To</span>
-			<div class="field-shell date-field">
+			{/snippet}
+			<input name="from" type="date" value={filters.from ?? ''} />
+		</FilterField>
+		<FilterField label="To" date>
+			{#snippet icon()}
 				<CalendarRange size={16} />
-				<input name="to" type="date" value={filters.to ?? ''} />
-			</div>
-		</label>
-		<label class="filter-field">
-			<span>Source</span>
-			<div class="field-shell">
+			{/snippet}
+			<input name="to" type="date" value={filters.to ?? ''} />
+		</FilterField>
+		<FilterField label="Source">
+			{#snippet icon()}
 				<Phone size={16} />
-				<input name="src" placeholder="1001" value={filters.src ?? ''} />
-			</div>
-		</label>
-		<label class="filter-field">
-			<span>Destination</span>
-			<div class="field-shell">
+			{/snippet}
+			<input name="src" placeholder="1001" value={filters.src ?? ''} />
+		</FilterField>
+		<FilterField label="Destination">
+			{#snippet icon()}
 				<PhoneIncoming size={16} />
-				<input name="dst" placeholder="1002" value={filters.dst ?? ''} />
-			</div>
-		</label>
-		<label class="filter-field">
-			<span>Status</span>
-			<div class="field-shell">
+			{/snippet}
+			<input name="dst" placeholder="1002" value={filters.dst ?? ''} />
+		</FilterField>
+		<FilterField label="Status">
+			{#snippet icon()}
 				<ListFilter size={16} />
-				<select name="disposition" value={disposition}>
-					<option value="">All statuses</option>
-					<option value="ANSWERED">Answered</option>
-					<option value="NO ANSWER">No answer</option>
-					<option value="BUSY">Busy</option>
-					<option value="FAILED">Failed</option>
-				</select>
-			</div>
-		</label>
+			{/snippet}
+			<select name="disposition" value={disposition}>
+				<option value="">All statuses</option>
+				<option value="ANSWERED">Answered</option>
+				<option value="NO ANSWER">No answer</option>
+				<option value="BUSY">Busy</option>
+				<option value="FAILED">Failed</option>
+			</select>
+		</FilterField>
 		{#if showLimit}
-			<label class="filter-field filter-field-compact">
-				<span>Top</span>
-				<div class="field-shell">
+			<FilterField label="Top" compact>
+				{#snippet icon()}
 					<SlidersHorizontal size={16} />
-					<select name="limit" value={String(filters.limit ?? 10)}>
-						<option value="10">Top 10</option>
-						<option value="25">Top 25</option>
-						<option value="50">Top 50</option>
-					</select>
-				</div>
-			</label>
+				{/snippet}
+				<select name="limit" value={String(filters.limit ?? 10)}>
+					<option value="10">Top 10</option>
+					<option value="25">Top 25</option>
+					<option value="50">Top 50</option>
+				</select>
+			</FilterField>
 		{/if}
 	</div>
 

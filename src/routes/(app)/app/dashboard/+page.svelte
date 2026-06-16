@@ -4,6 +4,7 @@
 	import DataTable from '$lib/components/DataTable.svelte';
 	import FilterBar from '$lib/components/FilterBar.svelte';
 	import KpiCard from '$lib/components/KpiCard.svelte';
+	import PageHeader from '$lib/components/PageHeader.svelte';
 	import TimeseriesChart from '$lib/components/TimeseriesChart.svelte';
 	import { callDetailsMetadata } from '$lib/reports/shared';
 
@@ -15,12 +16,7 @@
 </svelte:head>
 
 <main class="page-shell">
-	<div class="page-heading">
-		<div>
-			<h1>Dashboard</h1>
-			<p>Operational summary for Asterisk/FreePBX calls.</p>
-		</div>
-	</div>
+	<PageHeader title="Dashboard" description="Operational summary for Asterisk/FreePBX calls." />
 
 	<FilterBar filters={data.filters} />
 

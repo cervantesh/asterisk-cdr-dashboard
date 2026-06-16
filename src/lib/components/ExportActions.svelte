@@ -11,6 +11,14 @@
 </script>
 
 <div class="export-actions">
-	<a href={resolve(`/api/cdr/reports/${reportId}/export.csv${suffix}`)}>Export CSV</a>
-	<a href={resolve(`/api/cdr/reports/${reportId}/export.pdf${suffix}`)}>Export PDF</a>
+	<a
+		href={resolve(`/api/cdr/reports/${reportId}/export.csv${suffix}`)}
+		data-sveltekit-reload
+		data-sveltekit-preload-data="off">Export CSV</a
+	>
+	<a
+		href={resolve(`/api/cdr/reports/${reportId}/export.pdf${suffix}`)}
+		data-sveltekit-reload
+		data-sveltekit-preload-data="off">Export PDF</a
+	>
 </div>
