@@ -47,6 +47,7 @@
 		if (!from && !to) return 'Current view';
 		return `${from ?? 'Start'} to ${to ?? 'Now'}`;
 	});
+	const showActiveWindow = $derived(activeWindow !== 'Current view');
 
 	const routeKey = $derived.by(() => `${page.url.pathname}?${page.url.searchParams.toString()}`);
 </script>
@@ -113,7 +114,9 @@
 				{#key routeKey}
 					<div class="topbar-context" in:fade={{ duration: 140 }}>
 						<p>{currentSection}</p>
-						<strong>{activeWindow}</strong>
+						{#if showActiveWindow}
+							<strong>{activeWindow}</strong>
+						{/if}
 					</div>
 				{/key}
 			</div>
