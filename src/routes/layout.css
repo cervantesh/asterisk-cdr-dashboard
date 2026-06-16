@@ -757,9 +757,12 @@ select {
 	}
 
 	.kpi-grid,
-	.dashboard-grid,
 	.settings-grid {
 		grid-template-columns: 1fr 1fr;
+	}
+
+	.dashboard-grid {
+		grid-template-columns: 1fr;
 	}
 
 	.filter-grid {
@@ -767,10 +770,24 @@ select {
 	}
 }
 
+@media (max-width: 900px) {
+	.page-shell {
+		padding: 20px;
+	}
+
+	.bar-row {
+		grid-template-columns: 72px minmax(0, 1fr) 32px;
+		gap: 10px;
+	}
+
+	.time-bars {
+		gap: 8px;
+	}
+}
+
 @media (max-width: 720px) {
 	.login-panel,
 	.kpi-grid,
-	.dashboard-grid,
 	.settings-grid {
 		grid-template-columns: 1fr;
 	}
