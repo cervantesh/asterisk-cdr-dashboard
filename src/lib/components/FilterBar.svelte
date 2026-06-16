@@ -38,7 +38,7 @@
 	);
 	let filtersOpen = $state(false);
 	let filtersInitialized = $state(false);
-	const shouldShowFilters = $derived(!isMobile || filtersOpen);
+	const panelOpen = $derived(!isMobile || filtersOpen);
 	const activeChips = $derived.by(() => {
 		const chips: { label: string; value: string }[] = [];
 		if (filters.from || filters.to) {
@@ -90,8 +90,8 @@
 		</div>
 	</div>
 
-	{#if shouldShowFilters}
-		<div id="filter-panel" class="filter-panel">
+	<div id="filter-panel" class="filter-panel-shell" class:open={panelOpen} aria-hidden={!panelOpen}>
+		<div class="filter-panel">
 			<FilterChips chips={activeChips} />
 
 			<div class="filter-grid">
@@ -174,5 +174,5 @@
 				</button>
 			</div>
 		</div>
-	{/if}
+	</div>
 </form>

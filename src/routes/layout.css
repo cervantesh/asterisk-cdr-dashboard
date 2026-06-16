@@ -518,9 +518,26 @@ select {
 	color: #64748b;
 }
 
+.filter-panel-shell {
+	display: grid;
+	grid-template-rows: 1fr;
+	opacity: 1;
+	transform: translateY(0);
+	transform-origin: top;
+	transition:
+		grid-template-rows 220ms ease,
+		opacity 180ms ease,
+		transform 220ms ease;
+}
+
 .filter-panel {
 	display: grid;
 	gap: 16px;
+	min-height: 0;
+}
+
+.filter-panel-shell > .filter-panel {
+	overflow: hidden;
 }
 
 .filter-chips {
@@ -1366,6 +1383,18 @@ select {
 	.filter-toggle {
 		display: inline-flex;
 		width: 100%;
+	}
+
+	.filter-panel-shell {
+		grid-template-rows: 0fr;
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+
+	.filter-panel-shell.open {
+		grid-template-rows: 1fr;
+		opacity: 1;
+		transform: translateY(0);
 	}
 
 	.filter-field-compact {
