@@ -54,7 +54,115 @@ MYSQL_PASSWORD=...
 
 The PBX integration is based on the Asterisk/FreePBX `asteriskcdrdb.cdr` data shape, not on FreePBX administrative tables. See [PBX CDR compatibility notes](docs/pbx-cdr-compatibility.md) for the fields, report data structures, query assumptions, and PBX versions considered.
 
-For a step-by-step setup against a live PBX database, see [Connecting to a real PBX database](docs/connect-real-pbx-database.md).
+## Connecting to a Real PBX Database
+
+The app reads from the Asterisk-style CDR table only:
+
+```txt
+asteriskcdrdb.cdr
+```
+
+It does not connect to FreePBX GUI tables.
+
+### Required environment variables
+
+```sh
+REPORT_DATA_SOURCE=mysql
+MYSQL_HOST=127.0.0.1
+MYSQL_PORT=3306
+MYSQL_DATABASE=asteriskcdrdb
+MYSQL_USER=pbx_report_user
+MYSQL_PASSWORD=replace_me
+MYSQL_CONNECTION_LIMIT=10
+```
+
+### Recommended database user
+
+Use a read-only user instead of the PBX admin account:
+
+```sql
+create user 'pbx_report_user'@'%' identified by 'replace_me';
+grant select on asteriskcdrdb.cdr to 'pbx_report_user'@'%';
+flush privileges;
+```
+
+If you know the dashboard server IP, narrow the host:
+
+```sql
+create user 'pbx_report_user'@'10.0.0.25' identified by 'replace_me';
+grant select on asteriskcdrdb.cdr to 'pbx_report_user'@'10.0.0.25';
+flush privileges;
+```
+
+### Minimum validation query
+
+Before switching the app to MySQL mode, confirm the PBX database exposes the fields the dashboard expects:
+
+```sql
+select
+  recid,
+  calldate,
+  clid,
+  src,
+  dst,
+  duration,
+  billsec,
+  disposition,
+  did,
+  uniqueid,
+  recordingfile
+from cdr
+order by calldate desc
+limit 10;
+```
+
+If that query fails, the app will need a compatibility update in the repository layer.
+
+### Local setup example
+
+Update `.env`:
+
+```sh
+REPORT_DATA_SOURCE=mysql
+MYSQL_HOST=192.168.1.50
+MYSQL_PORT=3306
+MYSQL_DATABASE=asteriskcdrdb
+MYSQL_USER=pbx_report_user
+MYSQL_PASSWORD=replace_me
+MYSQL_CONNECTION_LIMIT=10
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD_HASH=$2b$12$ZdbOq1yhtHuv/uJE/Bv2u.R65sTgPgAAPSzt0rsQ1P2qPasxe0Kxu
+SESSION_SECRET=dev-session-secret-change-me
+SESSION_COOKIE_NAME=cdr_session
+SESSION_TTL_DAYS=7
+PUBLIC_APP_NAME=CDR Dashboard
+```
+
+Then run:
+
+```sh
+npm run dev
+```
+
+Open `/app/settings` and confirm:
+
+- `Data Mode` is `mysql`
+- `CDR Database` matches your target database
+
+### Vercel note
+
+Vercel can host the app, but the PBX database still has to be reachable from Vercel's runtime. Many PBX installs keep MySQL bound to `127.0.0.1`, so direct Vercel access usually will not work without a tunnel, VPN, replicated reporting database, or moving the dashboard closer to the PBX.
+
+### First troubleshooting checks
+
+1. Confirm `REPORT_DATA_SOURCE=mysql`.
+2. Confirm the database host is reachable from the app runtime.
+3. Confirm the MySQL user can run `select ... from cdr`.
+4. Confirm the table is really named `cdr`.
+5. Confirm your PBX writes `NO ANSWER` and `BUSY` exactly as expected if you care about the missed-call report.
+6. Check whether your PBX schema is missing `recid`, `did`, or `recordingfile`.
+
+More detail is available in [Connecting to a real PBX database](docs/connect-real-pbx-database.md).
 
 ## Vercel Hobby demo
 
