@@ -20,6 +20,7 @@ export const load = async ({ params, url }) => {
 			defaultLimit: report.defaultLimit,
 			columns: report.columns
 		},
+		filters,
 		result,
 		query: url.searchParams.toString()
 	};

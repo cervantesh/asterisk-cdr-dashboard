@@ -18,7 +18,7 @@
 		</div>
 		<ExportActions reportId="call-details" query={data.query} />
 	</div>
-	<FilterBar />
+	<FilterBar filters={data.filters} />
 	<section class="panel">
 		<header class="panel-header">
 			<div>

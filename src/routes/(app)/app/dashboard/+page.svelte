@@ -22,7 +22,7 @@
 		</div>
 	</div>
 
-	<FilterBar />
+	<FilterBar filters={data.filters} />
 
 	<section class="kpi-grid">
 		<KpiCard label="Total Calls" value={data.summary.totalCalls} helper="Filtered CDRs" />

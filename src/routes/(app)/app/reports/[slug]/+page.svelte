@@ -18,7 +18,7 @@
 		</div>
 		<ExportActions reportId={data.report.id} query={data.query} />
 	</div>
-	<FilterBar showLimit />
+	<FilterBar showLimit filters={data.filters} />
 	<section class="panel">
 		<DataTable report={data.report} rows={data.result.rows} />
 	</section>

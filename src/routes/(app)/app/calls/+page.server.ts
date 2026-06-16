@@ -8,6 +8,7 @@ export const load = async ({ url }) => {
 
 	return {
 		report: callDetailsMetadata,
+		filters,
 		result,
 		query: url.searchParams.toString()
 	};
