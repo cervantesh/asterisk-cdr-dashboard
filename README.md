@@ -76,7 +76,6 @@ ADMIN_PASSWORD_HASH=$2b$12$ZdbOq1yhtHuv/uJE/Bv2u.R65sTgPgAAPSzt0rsQ1P2qPasxe0Kxu
 SESSION_SECRET=<generate-a-long-random-value>
 SESSION_COOKIE_NAME=cdr_session
 SESSION_TTL_DAYS=7
-TZ=America/Santo_Domingo
 PUBLIC_APP_NAME=CDR Dashboard
 ```
 
