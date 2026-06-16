@@ -111,7 +111,7 @@
 					<X class="close-icon" size={20} />
 				</button>
 				{#key routeKey}
-					<div class="topbar-context" in:fade={{ duration: 150 }} out:fade={{ duration: 110 }}>
+					<div class="topbar-context" in:fade={{ duration: 140 }}>
 						<p>{currentSection}</p>
 						<strong>{activeWindow}</strong>
 					</div>
@@ -137,11 +137,7 @@
 			</div>
 		</header>
 		{#key routeKey}
-			<div
-				class="route-stage"
-				in:fly={{ y: 14, duration: 220, easing: cubicOut }}
-				out:fade={{ duration: 110 }}
-			>
+			<div class="route-stage" in:fly={{ y: 10, duration: 180, easing: cubicOut }}>
 				{@render children()}
 			</div>
 		{/key}
