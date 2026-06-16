@@ -401,10 +401,16 @@ select {
 
 .bar-row {
 	display: grid;
-	grid-template-columns: 60px 1fr 40px;
-	gap: 10px;
+	grid-template-columns: minmax(96px, max-content) minmax(140px, 1fr) 36px;
+	gap: 14px;
 	align-items: center;
 	font-size: 13px;
+}
+
+.bar-row span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .bar-row div {
