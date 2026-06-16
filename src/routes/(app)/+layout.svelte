@@ -16,11 +16,11 @@
 
 	const navItems = [
 		{ href: '/app/dashboard', label: 'Dashboard', icon: Home },
-		{ href: '/app/calls', label: 'Detalles', icon: PhoneCall },
-		{ href: '/app/reports/realizadas', label: 'Realizadas', icon: BarChart3 },
-		{ href: '/app/reports/recibidas', label: 'Recibidas', icon: PhoneIncoming },
-		{ href: '/app/reports/no-contestadas', label: 'No contestadas', icon: PhoneMissed },
-		{ href: '/app/settings', label: 'Configuracion', icon: Settings }
+		{ href: '/app/calls', label: 'Call Details', icon: PhoneCall },
+		{ href: '/app/reports/made', label: 'Made Calls', icon: BarChart3 },
+		{ href: '/app/reports/received', label: 'Received Calls', icon: PhoneIncoming },
+		{ href: '/app/reports/missed', label: 'Missed Calls', icon: PhoneMissed },
+		{ href: '/app/settings', label: 'Settings', icon: Settings }
 	] as const;
 </script>
 
@@ -33,7 +33,7 @@
 				<small>Asterisk / FreePBX</small>
 			</span>
 		</a>
-		<nav aria-label="Navegacion principal">
+		<nav aria-label="Main navigation">
 			{#each navItems as item (item.href)}
 				<a href={resolve(item.href)} class="nav-link">
 					<item.icon size={18} />
@@ -44,7 +44,7 @@
 		<form method="POST" action="/logout" class="logout-form">
 			<button type="submit">
 				<LogOut size={18} />
-				<span>Salir</span>
+				<span>Sign out</span>
 			</button>
 		</form>
 	</aside>
@@ -52,12 +52,12 @@
 	<div class="main-shell">
 		<header class="topbar">
 			<div>
-				<p>Sesion</p>
+				<p>Session</p>
 				<strong>{data.user.username}</strong>
 			</div>
 			<a class="export-shortcut" href={resolve('/api/cdr/reports/call-details/export.csv')}>
 				<FileDown size={16} />
-				Exportar CSV
+				Export CSV
 			</a>
 		</header>
 		{@render children()}

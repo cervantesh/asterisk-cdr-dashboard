@@ -18,47 +18,47 @@
 	<div class="page-heading">
 		<div>
 			<h1>Dashboard</h1>
-			<p>Resumen operativo de llamadas Asterisk/FreePBX.</p>
+			<p>Operational summary for Asterisk/FreePBX calls.</p>
 		</div>
 	</div>
 
 	<FilterBar />
 
 	<section class="kpi-grid">
-		<KpiCard label="Total llamadas" value={data.summary.totalCalls} helper="CDR filtrados" />
+		<KpiCard label="Total Calls" value={data.summary.totalCalls} helper="Filtered CDRs" />
 		<KpiCard
-			label="Contestadas"
+			label="Answered"
 			value={data.summary.answeredCalls}
 			helper={`${data.summary.answerRate}%`}
 			tone="success"
 		/>
 		<KpiCard
-			label="Perdidas"
+			label="Missed"
 			value={data.summary.missedCalls + data.summary.busyCalls}
 			helper="NO ANSWER + BUSY"
 			tone="warning"
 		/>
 		<KpiCard
-			label="Duracion promedio"
+			label="Average Duration"
 			value={`${data.summary.averageDuration}s`}
-			helper={`Facturado ${data.summary.averageBillsec}s`}
+			helper={`Billed ${data.summary.averageBillsec}s`}
 		/>
 	</section>
 
 	<section class="dashboard-grid">
 		<TimeseriesChart rows={data.timeseries} />
-		<BarList title="Distribucion por estado" rows={data.stateRows} color="#d97706" />
-		<BarList title="Mas realizadas" rows={data.made} />
-		<BarList title="Mas recibidas" rows={data.received} color="#2563eb" />
+		<BarList title="Status Distribution" rows={data.stateRows} color="#d97706" />
+		<BarList title="Top Made Calls" rows={data.made} />
+		<BarList title="Top Received Calls" rows={data.received} color="#2563eb" />
 	</section>
 
 	<section class="panel">
 		<header class="panel-header">
 			<div>
-				<h2>Llamadas recientes</h2>
-				<p>Ultimos CDR segun filtros activos.</p>
+				<h2>Recent Calls</h2>
+				<p>Latest CDRs for the active filters.</p>
 			</div>
-			<a href={resolve('/app/calls')}>Ver detalles</a>
+			<a href={resolve('/app/calls')}>View Details</a>
 		</header>
 		<DataTable report={callDetailsMetadata} rows={data.recentCalls} />
 	</section>

@@ -20,7 +20,7 @@ export function createDemoCdrRows(): CallDetailRow[] {
 			calldate,
 			src,
 			dst,
-			clid: `"Cliente ${100 + (index % 80)}" <${src}>`,
+			clid: `"Customer ${100 + (index % 80)}" <${src}>`,
 			duration,
 			billsec,
 			disposition,

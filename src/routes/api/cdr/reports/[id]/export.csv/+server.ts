@@ -8,7 +8,7 @@ export const GET = async (event) => {
 	requireApiUser(event);
 	const report = getReportById(event.params.id);
 	if (!report) {
-		error(404, 'Reporte no encontrado');
+		error(404, 'Report not found');
 	}
 
 	const filters = parseFilters(event.url, {

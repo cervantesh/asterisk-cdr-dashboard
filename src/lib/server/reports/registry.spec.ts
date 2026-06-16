@@ -11,7 +11,7 @@ const filters = {
 
 describe('report registry', () => {
 	it('looks up report definitions by id', () => {
-		expect(getReportById('top-made-sources')?.title).toBe('Mas llamadas realizadas');
+		expect(getReportById('top-made-sources')?.title).toBe('Top Made Calls');
 	});
 
 	it('preserves legacy aggregation definitions', async () => {

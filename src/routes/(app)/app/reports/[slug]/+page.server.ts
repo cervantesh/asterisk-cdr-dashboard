@@ -4,8 +4,8 @@ import { parseFilters } from '$lib/server/validation/cdr-filters';
 
 export const load = async ({ params, url }) => {
 	const report = getReportBySlug(params.slug);
-	if (!report || report.slug === 'detalles') {
-		error(404, 'Reporte no encontrado');
+	if (!report || report.slug === 'calls') {
+		error(404, 'Report not found');
 	}
 
 	const filters = parseFilters(url, { limit: report.defaultLimit ?? 10, pageSize: 50 });

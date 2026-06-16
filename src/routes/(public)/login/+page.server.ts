@@ -15,7 +15,7 @@ export const actions = {
 
 		if (!(await verifyAdminCredentials(username, password))) {
 			return fail(400, {
-				message: 'Usuario o contrasena invalida.',
+				message: 'Invalid username or password.',
 				username
 			});
 		}

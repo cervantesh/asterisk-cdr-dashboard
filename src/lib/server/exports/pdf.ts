@@ -4,14 +4,14 @@ import type { ReportFilters } from '$lib/server/db/cdr.types';
 
 function filterSummary(filters: ReportFilters) {
 	const parts = [
-		filters.from ? `Desde: ${filters.from}` : null,
-		filters.to ? `Hasta: ${filters.to}` : null,
-		filters.src ? `Origen: ${filters.src}` : null,
-		filters.dst ? `Destino: ${filters.dst}` : null,
-		filters.disposition.length ? `Estado: ${filters.disposition.join(', ')}` : null
+		filters.from ? `From: ${filters.from}` : null,
+		filters.to ? `To: ${filters.to}` : null,
+		filters.src ? `Source: ${filters.src}` : null,
+		filters.dst ? `Destination: ${filters.dst}` : null,
+		filters.disposition.length ? `Status: ${filters.disposition.join(', ')}` : null
 	].filter(Boolean);
 
-	return parts.length ? parts.join(' | ') : 'Sin filtros aplicados';
+	return parts.length ? parts.join(' | ') : 'No filters applied';
 }
 
 type ExportableReport = {
@@ -37,7 +37,7 @@ export function renderPdf(
 		doc.moveDown(0.25);
 		doc.fontSize(9).fillColor('#4b5563').text(report.description);
 		doc.text(filterSummary(filters));
-		doc.text(`Generado: ${new Date().toLocaleString('es-DO')}`);
+		doc.text(`Generated: ${new Date().toLocaleString('en-US')}`);
 		doc.moveDown();
 
 		const usableWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
@@ -79,7 +79,7 @@ export function renderPdf(
 		}
 
 		if (!rows.length) {
-			doc.fontSize(10).fillColor('#6b7280').text('No hay filas para los filtros seleccionados.');
+			doc.fontSize(10).fillColor('#6b7280').text('No rows for the selected filters.');
 		}
 
 		doc.end();

@@ -4,31 +4,31 @@
 		showLimit?: boolean;
 	};
 
-	let { title = 'Filtros', showLimit = false }: Props = $props();
+	let { title = 'Filters', showLimit = false }: Props = $props();
 </script>
 
 <form method="GET" class="filter-bar" aria-label={title}>
 	<div class="filter-title">{title}</div>
 	<label>
-		<span>Desde</span>
+		<span>From</span>
 		<input name="from" type="date" />
 	</label>
 	<label>
-		<span>Hasta</span>
+		<span>To</span>
 		<input name="to" type="date" />
 	</label>
 	<label>
-		<span>Origen</span>
+		<span>Source</span>
 		<input name="src" placeholder="1001" />
 	</label>
 	<label>
-		<span>Destino</span>
+		<span>Destination</span>
 		<input name="dst" placeholder="1002" />
 	</label>
 	<label>
-		<span>Estado</span>
+		<span>Status</span>
 		<select name="disposition">
-			<option value="">Todos</option>
+			<option value="">All</option>
 			<option value="ANSWERED">ANSWERED</option>
 			<option value="NO ANSWER">NO ANSWER</option>
 			<option value="BUSY">BUSY</option>
@@ -45,6 +45,6 @@
 			</select>
 		</label>
 	{/if}
-	<button type="submit">Aplicar</button>
-	<button type="submit" class="secondary-button">Limpiar</button>
+	<button type="submit">Apply</button>
+	<button type="submit" class="secondary-button">Clear</button>
 </form>

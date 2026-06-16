@@ -6,7 +6,7 @@ export type ReportId =
 	| 'top-received-destinations'
 	| 'missed-destinations';
 
-export type ReportSlug = 'realizadas' | 'recibidas' | 'no-contestadas';
+export type ReportSlug = 'made' | 'received' | 'missed';
 
 export type ReportFilters = {
 	from?: string;

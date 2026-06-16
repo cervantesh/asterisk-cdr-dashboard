@@ -11,9 +11,9 @@
 
 <section class="chart-panel">
 	<header>
-		<h2>Llamadas por dia</h2>
+		<h2>Calls by Day</h2>
 	</header>
-	<div class="time-bars" aria-label="Llamadas por dia">
+	<div class="time-bars" aria-label="Calls by day">
 		{#each rows as row (row.period)}
 			<div class="time-bar">
 				<span style={`height: ${Math.max(8, (row.total / max) * 150)}px`}></span>

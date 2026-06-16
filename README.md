@@ -2,10 +2,10 @@
 
 SvelteKit full-stack dashboard for Asterisk/FreePBX call detail records. The app modernizes an older Java Swing/JasperReports project while preserving the original report behavior:
 
-- `Detalles`: paginated CDR rows.
-- `Realizadas`: calls grouped by source extension.
-- `Recibidas`: answered calls grouped by destination extension.
-- `No contestadas`: `NO ANSWER` and `BUSY` calls grouped by destination extension.
+- `Call Details`: paginated CDR rows.
+- `Made Calls`: calls grouped by source extension.
+- `Received Calls`: answered calls grouped by destination extension.
+- `Missed Calls`: `NO ANSWER` and `BUSY` calls grouped by destination extension.
 
 The default data source is deterministic demo data, so the dashboard runs without a PBX.
 
@@ -95,5 +95,3 @@ npm run test:unit -- --run
 npm run build
 npm run test:e2e
 ```
-
-The concept image used as the UI direction is in `docs/design/dashboard-concept.png`.

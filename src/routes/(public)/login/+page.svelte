@@ -11,16 +11,16 @@
 		<div>
 			<p class="app-mark">CDR</p>
 			<h1 id="login-title">CDR Dashboard</h1>
-			<p class="login-copy">Acceso seguro a reportes de llamadas Asterisk/FreePBX.</p>
+			<p class="login-copy">Secure access to Asterisk/FreePBX call reports.</p>
 		</div>
 
 		<form method="POST" class="login-form">
 			<label>
-				<span>Usuario</span>
+				<span>Username</span>
 				<input name="username" autocomplete="username" value={form?.username ?? 'admin'} required />
 			</label>
 			<label>
-				<span>Contrasena</span>
+				<span>Password</span>
 				<input
 					name="password"
 					type="password"
@@ -32,7 +32,7 @@
 			{#if form?.message}
 				<p class="form-error">{form.message}</p>
 			{/if}
-			<button type="submit">Entrar</button>
+			<button type="submit">Log in</button>
 		</form>
 	</section>
 </main>

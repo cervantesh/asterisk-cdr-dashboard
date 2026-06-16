@@ -11,6 +11,6 @@
 </script>
 
 <div class="export-actions">
-	<a href={resolve(`/api/cdr/reports/${reportId}/export.csv${suffix}`)}>Exportar CSV</a>
-	<a href={resolve(`/api/cdr/reports/${reportId}/export.pdf${suffix}`)}>Exportar PDF</a>
+	<a href={resolve(`/api/cdr/reports/${reportId}/export.csv${suffix}`)}>Export CSV</a>
+	<a href={resolve(`/api/cdr/reports/${reportId}/export.pdf${suffix}`)}>Export PDF</a>
 </div>

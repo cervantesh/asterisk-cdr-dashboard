@@ -6,13 +6,13 @@ describe('renderCsv', () => {
 		const csv = renderCsv(
 			{
 				columns: [
-					{ key: 'src', label: 'Origen' },
+					{ key: 'src', label: 'Source' },
 					{ key: 'clid', label: 'Caller ID' }
 				]
 			},
-			[{ src: '1001', clid: '"Cliente, Demo" <1001>' }]
+			[{ src: '1001', clid: '"Demo Customer" <1001>' }]
 		);
 
-		expect(csv).toBe('Origen,Caller ID\n1001,"""Cliente, Demo"" <1001>"\n');
+		expect(csv).toBe('Source,Caller ID\n1001,"""Demo Customer"" <1001>"\n');
 	});
 });

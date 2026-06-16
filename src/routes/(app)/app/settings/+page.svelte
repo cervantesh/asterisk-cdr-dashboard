@@ -3,27 +3,27 @@
 </script>
 
 <svelte:head>
-	<title>Configuracion | CDR Dashboard</title>
+	<title>Settings | CDR Dashboard</title>
 </svelte:head>
 
 <main class="page-shell">
 	<div class="page-heading">
 		<div>
-			<h1>Configuracion</h1>
-			<p>Estado de la aplicacion y fuente de datos.</p>
+			<h1>Settings</h1>
+			<p>Application status and data source.</p>
 		</div>
 	</div>
 	<section class="settings-grid">
 		<article>
-			<span>Modo de datos</span>
+			<span>Data Mode</span>
 			<strong>{data.mode}</strong>
 		</article>
 		<article>
-			<span>Base CDR</span>
+			<span>CDR Database</span>
 			<strong>{data.database}</strong>
 		</article>
 		<article>
-			<span>Zona horaria</span>
+			<span>Time Zone</span>
 			<strong>{data.timezone}</strong>
 		</article>
 	</section>
