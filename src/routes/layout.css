@@ -373,6 +373,10 @@ select {
 	gap: 12px;
 }
 
+.export-label-compact {
+	display: none;
+}
+
 .topbar-user {
 	border: 1px solid rgba(203, 213, 225, 0.8);
 	border-radius: 999px;
@@ -1335,6 +1339,16 @@ select {
 
 	.export-shortcut {
 		flex: 0 0 auto;
+		min-height: 38px;
+		padding: 0 12px;
+	}
+
+	.export-label-full {
+		display: none;
+	}
+
+	.export-label-compact {
+		display: inline;
 	}
 
 	.filter-actions .secondary-button,

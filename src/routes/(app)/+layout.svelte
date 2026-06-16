@@ -135,7 +135,8 @@
 					data-sveltekit-preload-data="off"
 				>
 					<FileDown size={16} />
-					Export snapshot
+					<span class="export-label-full">Export snapshot</span>
+					<span class="export-label-compact">Export</span>
 				</a>
 			</div>
 		</header>
