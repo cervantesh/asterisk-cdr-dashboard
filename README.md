@@ -54,6 +54,8 @@ MYSQL_PASSWORD=...
 
 The PBX integration is based on the Asterisk/FreePBX `asteriskcdrdb.cdr` data shape, not on FreePBX administrative tables. See [PBX CDR compatibility notes](docs/pbx-cdr-compatibility.md) for the fields, report data structures, query assumptions, and PBX versions considered.
 
+For a step-by-step setup against a live PBX database, see [Connecting to a real PBX database](docs/connect-real-pbx-database.md).
+
 ## Vercel Hobby demo
 
 The portfolio demo is intended to run on Vercel Hobby with demo data and no PBX database.
