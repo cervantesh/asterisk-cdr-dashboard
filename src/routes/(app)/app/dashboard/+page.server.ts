@@ -16,6 +16,10 @@ export const load = async ({ url }) => {
 		0,
 		summary.totalCalls - summary.answeredCalls - summary.missedCalls - summary.busyCalls
 	);
+	const busiestDay = [...timeseries].sort((left, right) => right.total - left.total)[0];
+	const dominantSource = made[0];
+	const dominantDestination = received[0];
+	const performanceTone = summary.answerRate >= 70 ? 'success' : 'warning';
 
 	return {
 		filters,
@@ -49,6 +53,37 @@ export const load = async ({ url }) => {
 				callCount: failedCalls,
 				totalDuration: 0,
 				totalBillsec: 0
+			}
+		],
+		insights: [
+			{
+				eyebrow: 'Answering',
+				title: `${summary.answerRate}% of filtered calls were answered`,
+				body:
+					summary.answerRate >= 70
+						? 'Inbound handling is holding steady for the current slice.'
+						: 'Answer performance is soft. Review staffing and missed-call windows first.',
+				tone: performanceTone
+			},
+			{
+				eyebrow: 'Demand',
+				title: busiestDay
+					? `${busiestDay.period} is the busiest day in view`
+					: 'No traffic peak detected',
+				body: busiestDay
+					? `${busiestDay.total} calls landed on the highest-volume day in the current range.`
+					: 'Expand the date range to surface traffic concentration.',
+				tone: 'accent' as const
+			},
+			{
+				eyebrow: 'Routing',
+				title: dominantSource
+					? `Extension ${dominantSource.extension} is driving the most outbound activity`
+					: 'Outbound leaders unavailable',
+				body: dominantDestination
+					? `Answered demand is concentrating on ${dominantDestination.extension}.`
+					: 'No answered destination concentration is available yet.',
+				tone: 'neutral' as const
 			}
 		],
 		made,

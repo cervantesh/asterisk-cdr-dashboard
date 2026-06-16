@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import {
+		Activity,
 		BarChart3,
 		FileDown,
 		Home,
@@ -12,6 +13,8 @@
 		Settings,
 		X
 	} from '@lucide/svelte';
+	import { page } from '$app/state';
+	import AppIdentity from '$lib/components/AppIdentity.svelte';
 	import '../layout.css';
 
 	let { data, children } = $props();
@@ -25,6 +28,23 @@
 		{ href: '/app/reports/missed', label: 'Missed Calls', icon: PhoneMissed },
 		{ href: '/app/settings', label: 'Settings', icon: Settings }
 	] as const;
+
+	const currentSection = $derived.by(() => {
+		const path = page.url.pathname;
+		if (path.includes('/app/calls')) return 'Call Details';
+		if (path.includes('/app/reports/made')) return 'Made Calls';
+		if (path.includes('/app/reports/received')) return 'Received Calls';
+		if (path.includes('/app/reports/missed')) return 'Missed Calls';
+		if (path.includes('/app/settings')) return 'Settings';
+		return 'Dashboard';
+	});
+
+	const activeWindow = $derived.by(() => {
+		const from = page.url.searchParams.get('from');
+		const to = page.url.searchParams.get('to');
+		if (!from && !to) return 'Current view';
+		return `${from ?? 'Start'} to ${to ?? 'Now'}`;
+	});
 </script>
 
 <div class="app-frame">
@@ -50,14 +70,10 @@
 		<a
 			class="brand"
 			href={resolve('/app/dashboard')}
-			aria-label="CDR Dashboard"
+			aria-label="CDR Console"
 			onclick={() => (sidebarOpen = false)}
 		>
-			<span class="brand-icon">CDR</span>
-			<span>
-				<strong>CDR Dashboard</strong>
-				<small>Asterisk / FreePBX</small>
-			</span>
+			<AppIdentity compact />
 		</a>
 		<nav aria-label="Main navigation">
 			{#each navItems as item (item.href)}
@@ -91,19 +107,28 @@
 					<X class="close-icon" size={20} />
 				</button>
 				<div>
-					<p>Session</p>
-					<strong>{data.user.username}</strong>
+					<p>{currentSection}</p>
+					<strong>{activeWindow}</strong>
 				</div>
 			</div>
-			<a
-				class="export-shortcut"
-				href={resolve('/api/cdr/reports/call-details/export.csv')}
-				data-sveltekit-reload
-				data-sveltekit-preload-data="off"
-			>
-				<FileDown size={16} />
-				Export CSV
-			</a>
+			<div class="topbar-actions">
+				<div class="topbar-user">
+					<Activity size={16} />
+					<div>
+						<p>Session</p>
+						<strong>{data.user.username}</strong>
+					</div>
+				</div>
+				<a
+					class="export-shortcut"
+					href={resolve('/api/cdr/reports/call-details/export.csv')}
+					data-sveltekit-reload
+					data-sveltekit-preload-data="off"
+				>
+					<FileDown size={16} />
+					Export snapshot
+				</a>
+			</div>
 		</header>
 		{@render children()}
 	</div>

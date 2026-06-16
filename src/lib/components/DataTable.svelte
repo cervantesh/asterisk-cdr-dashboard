@@ -7,11 +7,36 @@
 		emptyText?: string;
 	};
 
-	let {
-		report,
-		rows,
-		emptyText = 'No hay datos para los filtros seleccionados.'
-	}: Props = $props();
+	let { report, rows, emptyText = 'No data for the selected filters.' }: Props = $props();
+
+	function cellClass(columnKey: string) {
+		if (columnKey === 'disposition') return 'cell-badge';
+		if (
+			columnKey === 'src' ||
+			columnKey === 'dst' ||
+			columnKey === 'extension' ||
+			columnKey === 'did'
+		) {
+			return 'cell-code';
+		}
+		if (columnKey === 'uniqueid') return 'cell-muted';
+		return '';
+	}
+
+	function badgeTone(value: unknown) {
+		switch (String(value ?? '')) {
+			case 'ANSWERED':
+				return 'success';
+			case 'NO ANSWER':
+				return 'warning';
+			case 'BUSY':
+				return 'busy';
+			case 'FAILED':
+				return 'danger';
+			default:
+				return 'neutral';
+		}
+	}
 </script>
 
 <div class="table-wrap">
@@ -28,7 +53,15 @@
 				{#each rows as row, rowIndex (row.uniqueid ?? row.extension ?? rowIndex)}
 					<tr>
 						{#each report.columns as column (column.key)}
-							<td class:align-right={column.align === 'right'}>{formatCellValue(column, row)}</td>
+							<td class:align-right={column.align === 'right'}>
+								{#if column.key === 'disposition'}
+									<span class={`table-badge ${badgeTone(row[column.key])}`}>
+										{formatCellValue(column, row)}
+									</span>
+								{:else}
+									<span class={cellClass(column.key)}>{formatCellValue(column, row)}</span>
+								{/if}
+							</td>
 						{/each}
 					</tr>
 				{/each}

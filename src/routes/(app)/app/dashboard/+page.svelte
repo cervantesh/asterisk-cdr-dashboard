@@ -3,6 +3,7 @@
 	import BarList from '$lib/components/BarList.svelte';
 	import DataTable from '$lib/components/DataTable.svelte';
 	import FilterBar from '$lib/components/FilterBar.svelte';
+	import InsightCallout from '$lib/components/InsightCallout.svelte';
 	import KpiCard from '$lib/components/KpiCard.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import TimeseriesChart from '$lib/components/TimeseriesChart.svelte';
@@ -21,24 +22,38 @@
 	<FilterBar filters={data.filters} />
 
 	<section class="kpi-grid">
-		<KpiCard label="Total Calls" value={data.summary.totalCalls} helper="Filtered CDRs" />
+		<KpiCard
+			label="Total Calls"
+			value={data.summary.totalCalls}
+			helper="Filtered CDRs"
+			footnote={`Source ${data.summary.busiestSource || 'n/a'}`}
+		/>
 		<KpiCard
 			label="Answered"
 			value={data.summary.answeredCalls}
 			helper={`${data.summary.answerRate}%`}
+			footnote="Answer rate"
 			tone="success"
 		/>
 		<KpiCard
 			label="Missed"
 			value={data.summary.missedCalls + data.summary.busyCalls}
 			helper="NO ANSWER + BUSY"
+			footnote="Follow-up queue"
 			tone="warning"
 		/>
 		<KpiCard
 			label="Average Duration"
 			value={`${data.summary.averageDuration}s`}
 			helper={`Billed ${data.summary.averageBillsec}s`}
+			footnote={`Destination ${data.summary.busiestDestination || 'n/a'}`}
 		/>
+	</section>
+
+	<section class="insights-grid" aria-label="Operational insights">
+		{#each data.insights as insight (`${insight.eyebrow}-${insight.title}`)}
+			<InsightCallout {...insight} />
+		{/each}
 	</section>
 
 	<section class="dashboard-grid">

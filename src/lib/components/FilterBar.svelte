@@ -7,6 +7,7 @@
 		RotateCcw,
 		SlidersHorizontal
 	} from '@lucide/svelte';
+	import FilterChips from '$lib/components/FilterChips.svelte';
 	import FilterField from '$lib/components/FilterField.svelte';
 	import type { ReportFilters } from '$lib/types/cdr';
 
@@ -29,19 +30,32 @@
 			showLimit ? filters.limit : undefined
 		].filter(Boolean).length
 	);
+	const activeChips = $derived.by(() => {
+		const chips: { label: string; value: string }[] = [];
+		if (filters.from || filters.to) {
+			chips.push({ label: 'Range', value: `${filters.from ?? 'Start'} to ${filters.to ?? 'Now'}` });
+		}
+		if (filters.src) chips.push({ label: 'Source', value: filters.src });
+		if (filters.dst) chips.push({ label: 'Destination', value: filters.dst });
+		if (disposition) chips.push({ label: 'Status', value: disposition });
+		if (showLimit) chips.push({ label: 'Top', value: String(filters.limit ?? 10) });
+		return chips;
+	});
 </script>
 
 <form method="GET" class="filter-bar" aria-label={title}>
 	<div class="filter-header">
 		<div class="filter-heading">
 			<span class="filter-kicker">{title}</span>
-			<strong>Tune the report view</strong>
+			<strong>Refine the active call slice</strong>
 		</div>
 		<div class="filter-status">
 			<SlidersHorizontal size={14} />
 			<span>{activeCount} active</span>
 		</div>
 	</div>
+
+	<FilterChips chips={activeChips} />
 
 	<div class="filter-grid">
 		<FilterField label="From" date>
