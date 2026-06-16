@@ -263,7 +263,7 @@ select {
 
 .filter-bar {
 	display: grid;
-	grid-template-columns: auto repeat(5, minmax(130px, 1fr)) auto auto;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 	align-items: end;
 	border: 1px solid #d9e1ea;
 	border-radius: 8px;
@@ -275,6 +275,14 @@ select {
 	align-self: center;
 	color: #172033;
 	font-weight: 800;
+}
+
+.filter-bar label,
+.filter-bar input,
+.filter-bar select,
+.filter-bar button {
+	min-width: 0;
+	width: 100%;
 }
 
 .filter-bar a {
