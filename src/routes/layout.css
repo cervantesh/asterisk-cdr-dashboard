@@ -1156,17 +1156,18 @@ select {
 	}
 
 	.mobile-menu-button {
-		position: fixed;
-		top: 14px;
-		left: 28px;
-		z-index: 70;
+		position: relative;
+		top: auto;
+		left: auto;
+		z-index: 1;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		align-self: center;
 	}
 
 	.topbar-left {
-		padding-left: 52px;
+		padding-left: 0;
 	}
 
 	.sidebar-backdrop {
@@ -1320,8 +1321,7 @@ select {
 	}
 
 	.mobile-menu-button {
-		top: 13px;
-		left: 16px;
+		align-self: flex-start;
 	}
 
 	.export-shortcut {
