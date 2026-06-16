@@ -9,6 +9,7 @@
 	} from '@lucide/svelte';
 	import FilterChips from '$lib/components/FilterChips.svelte';
 	import FilterField from '$lib/components/FilterField.svelte';
+	import SelectMenu from '$lib/components/SelectMenu.svelte';
 	import type { ReportFilters } from '$lib/types/cdr';
 
 	type Props = {
@@ -86,24 +87,34 @@
 			{#snippet icon()}
 				<ListFilter size={16} />
 			{/snippet}
-			<select name="disposition" value={disposition}>
-				<option value="">All statuses</option>
-				<option value="ANSWERED">Answered</option>
-				<option value="NO ANSWER">No answer</option>
-				<option value="BUSY">Busy</option>
-				<option value="FAILED">Failed</option>
-			</select>
+			<SelectMenu
+				name="disposition"
+				value={disposition}
+				placeholder="All statuses"
+				options={[
+					{ value: '', label: 'All statuses' },
+					{ value: 'ANSWERED', label: 'Answered' },
+					{ value: 'NO ANSWER', label: 'No answer' },
+					{ value: 'BUSY', label: 'Busy' },
+					{ value: 'FAILED', label: 'Failed' }
+				]}
+			/>
 		</FilterField>
 		{#if showLimit}
 			<FilterField label="Top" compact>
 				{#snippet icon()}
 					<SlidersHorizontal size={16} />
 				{/snippet}
-				<select name="limit" value={String(filters.limit ?? 10)}>
-					<option value="10">Top 10</option>
-					<option value="25">Top 25</option>
-					<option value="50">Top 50</option>
-				</select>
+				<SelectMenu
+					name="limit"
+					value={String(filters.limit ?? 10)}
+					placeholder="Top 10"
+					options={[
+						{ value: '10', label: 'Top 10' },
+						{ value: '25', label: 'Top 25' },
+						{ value: '50', label: 'Top 50' }
+					]}
+				/>
 			</FilterField>
 		{/if}
 	</div>
