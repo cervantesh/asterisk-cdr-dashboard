@@ -633,8 +633,157 @@ select {
 	color: #0f766e;
 }
 
-.date-field input {
-	padding-right: 2px;
+.date-picker {
+	position: relative;
+	width: 100%;
+}
+
+.date-trigger {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	border: 0;
+	background: transparent;
+	color: #0f172a;
+	padding: 0;
+	text-align: left;
+}
+
+.date-trigger svg {
+	flex: 0 0 auto;
+	color: #64748b;
+}
+
+.date-trigger span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+}
+
+.date-trigger .date-value {
+	color: #0f172a;
+}
+
+.date-trigger .date-placeholder {
+	color: #64748b;
+}
+
+.date-dropdown {
+	position: absolute;
+	top: calc(100% + 12px);
+	left: -14px;
+	z-index: 30;
+	width: 288px;
+	border: 1px solid rgba(203, 213, 225, 0.92);
+	border-radius: 16px;
+	background: rgba(255, 255, 255, 0.98);
+	padding: 12px;
+	box-shadow: 0 24px 50px rgba(15, 23, 42, 0.16);
+	backdrop-filter: blur(14px);
+}
+
+.date-dropdown-header,
+.date-actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.date-dropdown-header {
+	margin-bottom: 10px;
+}
+
+.date-dropdown-header strong {
+	font-size: 14px;
+}
+
+.date-nav {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.date-nav button,
+.date-actions button {
+	display: inline-flex;
+	min-height: 32px;
+	width: auto;
+	align-items: center;
+	justify-content: center;
+	border: 0;
+	border-radius: 10px;
+	background: transparent;
+	color: #475569;
+	padding: 0 10px;
+}
+
+.date-nav button:hover,
+.date-actions button:hover {
+	background: #eef5ff;
+	color: #0f172a;
+}
+
+.date-weekdays,
+.date-grid {
+	display: grid;
+	grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.date-weekdays {
+	margin-bottom: 6px;
+}
+
+.date-weekdays span {
+	padding: 6px 0;
+	color: #64748b;
+	font-size: 11px;
+	font-weight: 700;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.date-grid {
+	gap: 4px;
+}
+
+.date-cell {
+	display: inline-flex;
+	min-height: 34px;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	border: 0;
+	border-radius: 10px;
+	background: transparent;
+	color: #0f172a;
+	font-size: 13px;
+	font-variant-numeric: tabular-nums;
+}
+
+.date-cell:hover {
+	background: #eef5ff;
+}
+
+.date-cell.muted {
+	color: #94a3b8;
+}
+
+.date-cell.today {
+	background: #f1f5f9;
+	font-weight: 700;
+}
+
+.date-cell.selected {
+	background: #0f766e;
+	color: #ffffff;
+	font-weight: 800;
+}
+
+.date-actions {
+	margin-top: 10px;
 }
 
 .filter-bar label,

@@ -7,6 +7,7 @@
 		RotateCcw,
 		SlidersHorizontal
 	} from '@lucide/svelte';
+	import DatePickerMenu from '$lib/components/DatePickerMenu.svelte';
 	import FilterChips from '$lib/components/FilterChips.svelte';
 	import FilterField from '$lib/components/FilterField.svelte';
 	import SelectMenu from '$lib/components/SelectMenu.svelte';
@@ -63,13 +64,13 @@
 			{#snippet icon()}
 				<CalendarRange size={16} />
 			{/snippet}
-			<input name="from" type="date" value={filters.from ?? ''} />
+			<DatePickerMenu name="from" value={filters.from ?? ''} placeholder="Start date" />
 		</FilterField>
 		<FilterField label="To" date>
 			{#snippet icon()}
 				<CalendarRange size={16} />
 			{/snippet}
-			<input name="to" type="date" value={filters.to ?? ''} />
+			<DatePickerMenu name="to" value={filters.to ?? ''} placeholder="End date" />
 		</FilterField>
 		<FilterField label="Source">
 			{#snippet icon()}
