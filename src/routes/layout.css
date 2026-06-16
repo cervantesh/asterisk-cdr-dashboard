@@ -443,6 +443,12 @@ select {
 	gap: 12px;
 }
 
+.filter-header-actions {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
 .filter-heading {
 	display: grid;
 	gap: 4px;
@@ -473,6 +479,31 @@ select {
 	font-weight: 800;
 	padding: 8px 12px;
 	white-space: nowrap;
+}
+
+.filter-toggle {
+	display: none;
+	align-items: center;
+	gap: 8px;
+	min-height: 38px;
+	width: auto;
+	border: 1px solid #d9e1ea;
+	border-radius: 999px;
+	background: #ffffff;
+	color: #0f172a;
+	padding: 0 12px;
+	font-size: 12px;
+	font-weight: 800;
+	white-space: nowrap;
+}
+
+.filter-toggle svg {
+	flex: 0 0 auto;
+}
+
+.filter-panel {
+	display: grid;
+	gap: 16px;
 }
 
 .filter-chips {
@@ -1305,6 +1336,14 @@ select {
 	.filter-actions {
 		align-items: stretch;
 		flex-direction: column;
+	}
+
+	.filter-header-actions {
+		justify-content: space-between;
+	}
+
+	.filter-toggle {
+		display: inline-flex;
 	}
 
 	.filter-field-compact {
