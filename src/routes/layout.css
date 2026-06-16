@@ -209,9 +209,8 @@ select {
 }
 
 .app-frame {
-	display: grid;
+	display: block;
 	min-height: 100vh;
-	grid-template-columns: 260px minmax(0, 1fr);
 	overflow-x: hidden;
 }
 
@@ -286,7 +285,9 @@ select {
 }
 
 .main-shell {
+	margin-left: 260px;
 	min-width: 0;
+	width: calc(100% - 260px);
 }
 
 .route-stage {
@@ -1155,7 +1156,12 @@ select {
 
 @media (max-width: 1100px) {
 	.app-frame {
-		grid-template-columns: 1fr;
+		display: block;
+	}
+
+	.main-shell {
+		margin-left: 0;
+		width: 100%;
 	}
 
 	.mobile-menu-button {
