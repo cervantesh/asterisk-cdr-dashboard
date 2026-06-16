@@ -286,11 +286,20 @@ select {
 	min-width: 0;
 }
 
+.route-stage {
+	min-width: 0;
+}
+
 .topbar-left {
 	display: flex;
 	align-items: center;
 	gap: 12px;
 	min-width: 0;
+}
+
+.topbar-context {
+	min-width: 0;
+	transform-origin: left center;
 }
 
 .mobile-menu-button {

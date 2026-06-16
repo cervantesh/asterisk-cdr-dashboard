@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import { cubicOut } from 'svelte/easing';
+	import { fade, fly } from 'svelte/transition';
 	import {
 		Activity,
 		BarChart3,
@@ -45,6 +47,8 @@
 		if (!from && !to) return 'Current view';
 		return `${from ?? 'Start'} to ${to ?? 'Now'}`;
 	});
+
+	const routeKey = $derived.by(() => `${page.url.pathname}?${page.url.searchParams.toString()}`);
 </script>
 
 <div class="app-frame">
@@ -106,10 +110,12 @@
 					<Menu class="menu-icon" size={20} />
 					<X class="close-icon" size={20} />
 				</button>
-				<div>
-					<p>{currentSection}</p>
-					<strong>{activeWindow}</strong>
-				</div>
+				{#key routeKey}
+					<div class="topbar-context" in:fade={{ duration: 150 }} out:fade={{ duration: 110 }}>
+						<p>{currentSection}</p>
+						<strong>{activeWindow}</strong>
+					</div>
+				{/key}
 			</div>
 			<div class="topbar-actions">
 				<div class="topbar-user">
@@ -130,6 +136,14 @@
 				</a>
 			</div>
 		</header>
-		{@render children()}
+		{#key routeKey}
+			<div
+				class="route-stage"
+				in:fly={{ y: 14, duration: 220, easing: cubicOut }}
+				out:fade={{ duration: 110 }}
+			>
+				{@render children()}
+			</div>
+		{/key}
 	</div>
 </div>
