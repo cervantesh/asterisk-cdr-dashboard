@@ -1,6 +1,6 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import type { Cookies } from '@sveltejs/kit';
-import { verify } from '@node-rs/argon2';
+import bcrypt from 'bcryptjs';
 import { getEnv } from '$lib/server/config/env';
 
 type SessionPayload = {
@@ -38,7 +38,7 @@ export async function verifyAdminCredentials(username: string, password: string)
 		return false;
 	}
 
-	return verify(appEnv.ADMIN_PASSWORD_HASH, password);
+	return bcrypt.compare(password, appEnv.ADMIN_PASSWORD_HASH);
 }
 
 export function createSessionValue(username: string) {

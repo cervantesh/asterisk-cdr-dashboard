@@ -1,7 +1,10 @@
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vitest/config';
-import adapter from '@sveltejs/adapter-node';
+import nodeAdapter from '@sveltejs/adapter-node';
+import vercelAdapter from '@sveltejs/adapter-vercel';
 import { sveltekit } from '@sveltejs/kit/vite';
+
+const adapter = process.env.VERCEL ? vercelAdapter() : nodeAdapter();
 
 export default defineConfig({
 	plugins: [
@@ -12,7 +15,7 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			adapter: adapter()
+			adapter
 		})
 	],
 	test: {

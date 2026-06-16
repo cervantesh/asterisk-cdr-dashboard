@@ -1,8 +1,7 @@
 import { z } from 'zod';
 import { env } from '$env/dynamic/private';
 
-const defaultPasswordHash =
-	'$argon2id$v=19$m=19456,t=2,p=1$NwCtHyDF76jmf3XBJKnhDA$b76tzjPL1xzYvCaIXEQ3IwYLWDP4XKgTTjRs21+00Zo';
+const defaultPasswordHash = '$2b$12$ZdbOq1yhtHuv/uJE/Bv2u.R65sTgPgAAPSzt0rsQ1P2qPasxe0Kxu';
 
 const schema = z.object({
 	REPORT_DATA_SOURCE: z.enum(['demo', 'mysql']).default('demo'),
