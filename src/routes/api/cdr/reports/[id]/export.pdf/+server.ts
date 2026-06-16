@@ -13,7 +13,7 @@ export const GET = async (event) => {
 
 	const filters = parseFilters(event.url, {
 		limit: 5000,
-		pageSize: 5000,
+		pageSize: 200,
 		page: 1
 	});
 	const result = await report.run({ ...filters, offset: 0, page: 1, pageSize: 5000 });
