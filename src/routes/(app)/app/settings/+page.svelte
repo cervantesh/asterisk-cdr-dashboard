@@ -21,6 +21,7 @@
 		<article>
 			<span>Time Zone</span>
 			<strong>{data.timezone}</strong>
+			<small>{data.timezoneHint}</small>
 		</article>
 	</section>
 </main>
